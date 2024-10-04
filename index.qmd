@@ -1,0 +1,62 @@
+---
+title: "Gráficos del sistema base de R"
+author: "Melissa Rodríguez"
+format: html
+---
+## Gráficos del sistema de R
+```{r}
+plot(cars)
+```
+
+```{r}
+# Gráfico de dispersón del conjunto ChickWeight 
+plot(
+  x <- ChickWeight$Time,
+  y <- ChickWeight$weight,
+  
+  main = "Peso de los pollos a partir de su nacimiento",
+  xlab="Días desde el nacimiento", 
+  ylab="Peso en gramos"
+)
+
+```
+
+```{r}
+# Crear el gráfico de dispersión de educación vrs abortos inducidos
+plot(
+      infert$education, infert$induced,
+      main = "Abortos inducidos por nivel de educación",
+      xlab = "Nivel de educación",
+      ylab = "Abortos inducidos",
+)
+```
+
+```{r}
+plot(
+  x <- infert$education, 
+  y <- infert$induced,
+  
+  main = "Abortos inducidos por nivel de educación",
+  xlab = "Nivel de educación",
+  ylab = "Abortos inducidos"
+)
+```
+
+## **Abortos espontaneos para cada edad** 
+```{r}
+
+# Calcular la suma de abortos espontáneos por cada edad
+abortos_por_edad <- tapply(infert$spontaneous, infert$age, sum)
+
+# Crear gráfico de barras 
+barplot(abortos_por_edad,
+     xlab = "Edad",
+     ylab = "Abortos espontáneos",
+     main = "Gráfico de barras: Abortos espontáneos por edad",
+     col= "lightblue"
+     )
+
+```
+
+
+
