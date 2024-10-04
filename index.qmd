@@ -1,13 +1,32 @@
 ---
 title: "Gráficos del sistema base de R"
+subtitle: Curso de programación ps53
+date: 2024/10/03
 author: "Melissa Rodríguez"
-format: html
+format:
+  html:
+    toc: true
+theme: yeti 
+lang: es
 ---
-## Gráficos del sistema de R
 ```{r}
-plot(cars)
+library(tidyverse)
+library(palmerpenguins)
 ```
 
+<!--  format: docx.....word-->
+<!--  format: pptx.....powerpoint-->
+
+---
+
+
+# *Gráficos del sistema de R*
+```{r}
+#| label: gráfrico-dispersion-cars
+#| code-fold: true
+plot(cars)
+```
+## Peso del Pollo
 ```{r}
 # Gráfico de dispersón del conjunto ChickWeight 
 plot(
@@ -20,7 +39,7 @@ plot(
 )
 
 ```
-
+## Educación vrs Abortos
 ```{r}
 # Crear el gráfico de dispersión de educación vrs abortos inducidos
 plot(
@@ -56,6 +75,40 @@ barplot(abortos_por_edad,
      col= "lightblue"
      )
 
+```
+###Relación entre la longitud del pico y la masa de pinguinos.
+
+```{r}
+# Gráfico de dispersión de longitud del pico vs masa (peso)
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point(size = 1) +
+  geom_smooth(method = "loess", se = FALSE) +
+  ggtitle("Longitud del pico vs. masa") +
+  xlab("Longitud del pico (mm)") +
+  ylab("Masa (g)") +
+  labs(color = "Especie", shape = "Especie")
+```
+
+
+```{r}
+labs(color = "Especie", shape = "Especie")
+```
+###Relación entre la longitud del pico y la masa de pinguinos por especie
+
+```{r}
+# Gráfico de dispersión de longitud del pico vs masa (peso) por especie
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species,
+                 shape = species),
+             size = 2) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = species)) +
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  ggtitle("Longitud del pico vs. masa por especie") +
+  xlab("Longitud del pico (mm)") +
+  ylab("Masa (g)") +
+  labs(color = "Especie", shape = "Especie")
 ```
 
 
